@@ -1,18 +1,17 @@
 #include "utils/texture_packer.h"
 
+#include <filesystem>
+#include <vector>
+#include <glm/glm.hpp>
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include <stb_image_write.h>
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
-#include <filesystem>
-#include <vector>
 
 #include "core/log.h"
 #include "utils/yaml_util.h"
 #include "utils/texture_format.h"
 
-// TEMP
-#include <glm/glm.hpp>
 
 namespace Minecraft
 {

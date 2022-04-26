@@ -1,6 +1,8 @@
 #pragma once
 #include <memory>
 
+#include "events/event.h"
+
 namespace Minecraft
 {
     class Application
@@ -12,5 +14,7 @@ namespace Minecraft
         static std::unique_ptr<Application> create();
 
         void run();
+
+        bool test(Event& event);
     };
 }
