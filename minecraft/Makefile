@@ -27,12 +27,10 @@ endif
 ifeq ($(origin AR), default)
   AR = ar
 endif
-INCLUDES += -isystem include -isystem ../deps/spdlog/include -isystem ../deps/stb
+INCLUDES += -isystem include -isystem ../deps/spdlog/include -isystem ../deps/stb -isystem ../deps/yaml-cpp/include -isystem ../deps/glm
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-LIBS += -framework Cocoa -framework OpenGL -framework IOKit
-LDDEPS +=
 ALL_LDFLAGS += $(LDFLAGS)
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PREBUILDCMDS
@@ -49,6 +47,8 @@ OBJDIR = ../bin-int/Debug/macosx
 DEFINES += -DMINECRAFT_PLATFORM_MAC -DMINECRAFT_CONFIG_DEBUG
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17
+LIBS += ../deps/yaml-cpp/bin/Debug/macosx/libyaml-cpp.a -framework Cocoa -framework OpenGL -framework IOKit
+LDDEPS += ../deps/yaml-cpp/bin/Debug/macosx/libyaml-cpp.a
 
 else ifeq ($(config),release)
 TARGETDIR = ../bin/Release/macosx
@@ -57,6 +57,8 @@ OBJDIR = ../bin-int/Release/macosx
 DEFINES += -DMINECRAFT_PLATFORM_MAC -DMINECRAFT_CONFIG_RELEASE
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17
+LIBS += ../deps/yaml-cpp/bin/Release/macosx/libyaml-cpp.a -framework Cocoa -framework OpenGL -framework IOKit
+LDDEPS += ../deps/yaml-cpp/bin/Release/macosx/libyaml-cpp.a
 
 endif
 
@@ -74,10 +76,12 @@ GENERATED += $(OBJDIR)/application.o
 GENERATED += $(OBJDIR)/log.o
 GENERATED += $(OBJDIR)/main.o
 GENERATED += $(OBJDIR)/texture_packer.o
+GENERATED += $(OBJDIR)/yaml_util.o
 OBJECTS += $(OBJDIR)/application.o
 OBJECTS += $(OBJDIR)/log.o
 OBJECTS += $(OBJDIR)/main.o
 OBJECTS += $(OBJDIR)/texture_packer.o
+OBJECTS += $(OBJDIR)/yaml_util.o
 
 # Rules
 # #############################################
@@ -150,7 +154,10 @@ $(OBJDIR)/log.o: src/core/log.cpp
 $(OBJDIR)/main.o: src/main.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/texture_packer.o: src/texture_packer.cpp
+$(OBJDIR)/texture_packer.o: src/utils/texture_packer.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/yaml_util.o: src/utils/yaml_util.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 

@@ -1,6 +1,6 @@
 #include "core/log.h"
 #include "core/application.h"
-#include "texture_packer.h"
+#include "utils/texture_packer.h"
 
 int main()
 {

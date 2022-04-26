@@ -10,6 +10,11 @@ odir = "bin-int/%{cfg.buildcfg}/%{cfg.system}"
 dependencies = {}
 dependencies["spdlog"] = "deps/spdlog"
 dependencies["stb"] = "deps/stb"
+dependencies["yamlcpp"] = "deps/yaml-cpp"
+dependencies["glm"] = "deps/glm"
+
+-- Build other libraries
+include "deps/yaml-cpp"
 
 project "minecraft"
     location "minecraft"
@@ -31,12 +36,16 @@ project "minecraft"
         "%{prj.name}/include",
         "%{dependencies.spdlog}/include",
         "%{dependencies.stb}",
+        "%{dependencies.yamlcpp}/include",
+        "%{dependencies.glm}",
     }
 
     libdirs 
     {
-        
+
     }
+
+    links {"yaml-cpp"}
 
     filter { "system:windows"}
         systemversion "latest"

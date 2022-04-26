@@ -9,28 +9,37 @@ ifndef verbose
 endif
 
 ifeq ($(config),debug)
+  yaml_cpp_config = debug
   minecraft_config = debug
 
 else ifeq ($(config),release)
+  yaml_cpp_config = release
   minecraft_config = release
 
 else
   $(error "invalid configuration $(config)")
 endif
 
-PROJECTS := minecraft
+PROJECTS := yaml-cpp minecraft
 
 .PHONY: all clean help $(PROJECTS) 
 
 all: $(PROJECTS)
 
-minecraft:
+yaml-cpp:
+ifneq (,$(yaml_cpp_config))
+	@echo "==== Building yaml-cpp ($(yaml_cpp_config)) ===="
+	@${MAKE} --no-print-directory -C deps/yaml-cpp -f Makefile config=$(yaml_cpp_config)
+endif
+
+minecraft: yaml-cpp
 ifneq (,$(minecraft_config))
 	@echo "==== Building minecraft ($(minecraft_config)) ===="
 	@${MAKE} --no-print-directory -C minecraft -f Makefile config=$(minecraft_config)
 endif
 
 clean:
+	@${MAKE} --no-print-directory -C deps/yaml-cpp -f Makefile clean
 	@${MAKE} --no-print-directory -C minecraft -f Makefile clean
 
 help:
@@ -43,6 +52,7 @@ help:
 	@echo "TARGETS:"
 	@echo "   all (default)"
 	@echo "   clean"
+	@echo "   yaml-cpp"
 	@echo "   minecraft"
 	@echo ""
 	@echo "For more information, see https://github.com/premake/premake-core/wiki"
