@@ -1,1 +1,1 @@
-../bin-int/Debug/macosx/application.o: src/application.cpp
+../bin-int/Debug/macosx/application.o: src/core/application.cpp

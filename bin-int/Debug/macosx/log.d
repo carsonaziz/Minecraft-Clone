@@ -1,1 +1,1 @@
-../bin-int/Debug/macosx/log.o: src/log.cpp
+../bin-int/Debug/macosx/log.o: src/core/log.cpp

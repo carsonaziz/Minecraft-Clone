@@ -9,6 +9,7 @@ odir = "bin-int/%{cfg.buildcfg}/%{cfg.system}"
 -- External Dependencies --
 dependencies = {}
 dependencies["spdlog"] = "deps/spdlog"
+dependencies["stb"] = "deps/stb"
 
 project "minecraft"
     location "minecraft"
@@ -28,7 +29,8 @@ project "minecraft"
     sysincludedirs
     {
         "%{prj.name}/include",
-        "%{dependencies.spdlog}/include"
+        "%{dependencies.spdlog}/include",
+        "%{dependencies.stb}",
     }
 
     libdirs 

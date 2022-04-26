@@ -27,7 +27,7 @@ endif
 ifeq ($(origin AR), default)
   AR = ar
 endif
-INCLUDES += -isystem include -isystem ../deps/spdlog/include
+INCLUDES += -isystem include -isystem ../deps/spdlog/include -isystem ../deps/stb
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
@@ -73,9 +73,11 @@ OBJECTS :=
 GENERATED += $(OBJDIR)/application.o
 GENERATED += $(OBJDIR)/log.o
 GENERATED += $(OBJDIR)/main.o
+GENERATED += $(OBJDIR)/texture_packer.o
 OBJECTS += $(OBJDIR)/application.o
 OBJECTS += $(OBJDIR)/log.o
 OBJECTS += $(OBJDIR)/main.o
+OBJECTS += $(OBJDIR)/texture_packer.o
 
 # Rules
 # #############################################
@@ -139,13 +141,16 @@ endif
 # File Rules
 # #############################################
 
-$(OBJDIR)/application.o: src/application.cpp
+$(OBJDIR)/application.o: src/core/application.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/log.o: src/log.cpp
+$(OBJDIR)/log.o: src/core/log.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/main.o: src/main.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/texture_packer.o: src/texture_packer.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
