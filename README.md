@@ -5,7 +5,7 @@ C++ Minecraft Clone
 - [x] Texture packer
 - [x] Generate YAML texture uvs
 - [x] Implement event system
-- [ ] Implement layer system
+- [x] Implement layer system
 - [ ] Create window and integrate with event system
 
 ## Resources

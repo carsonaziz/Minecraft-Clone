@@ -73,11 +73,13 @@ GENERATED :=
 OBJECTS :=
 
 GENERATED += $(OBJDIR)/application.o
+GENERATED += $(OBJDIR)/layer_stack.o
 GENERATED += $(OBJDIR)/log.o
 GENERATED += $(OBJDIR)/main.o
 GENERATED += $(OBJDIR)/texture_packer.o
 GENERATED += $(OBJDIR)/yaml_util.o
 OBJECTS += $(OBJDIR)/application.o
+OBJECTS += $(OBJDIR)/layer_stack.o
 OBJECTS += $(OBJDIR)/log.o
 OBJECTS += $(OBJDIR)/main.o
 OBJECTS += $(OBJDIR)/texture_packer.o
@@ -146,6 +148,9 @@ endif
 # #############################################
 
 $(OBJDIR)/application.o: src/core/application.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/layer_stack.o: src/core/layers/layer_stack.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/log.o: src/core/log.cpp

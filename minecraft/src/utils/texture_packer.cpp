@@ -136,7 +136,7 @@ namespace Minecraft
             stbi_image_free(data);
         }
 
-        void generate_texture_format(std::string name, int index_x, int index_y)
+        void generate_texture_format(const std::string name, int index_x, int index_y)
         {
             TextureFormat format;
             format.name = name;
