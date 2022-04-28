@@ -12,9 +12,12 @@ dependencies["spdlog"] = "deps/spdlog"
 dependencies["stb"] = "deps/stb"
 dependencies["yamlcpp"] = "deps/yaml-cpp"
 dependencies["glm"] = "deps/glm"
+dependencies["glfw"] = "deps/glfw"
+dependencies["glad"] = "deps/glad"
 
 -- Build other libraries
 include "deps/yaml-cpp"
+include "deps/glad"
 
 project "minecraft"
     location "minecraft"
@@ -38,14 +41,11 @@ project "minecraft"
         "%{dependencies.stb}",
         "%{dependencies.yamlcpp}/include",
         "%{dependencies.glm}",
+        "%{dependencies.glfw}/include",
+        "%{dependencies.glad}/include",
     }
 
-    libdirs 
-    {
-
-    }
-
-    links {"yaml-cpp"}
+    links { "glfw3", "glad", "yaml-cpp"}
 
     filter { "system:windows"}
         systemversion "latest"
@@ -55,10 +55,28 @@ project "minecraft"
             "MINECRAFT_PLATFORM_WINDOWS"
         }
 
-    filter { "system:macosx"}
+    filter { "system:macosx", "architecture:ARM64"}
         defines
         {
             "MINECRAFT_PLATFORM_MAC"
+        }
+
+        libdirs 
+        {
+            "%{dependencies.glfw}/lib-arm64"
+        }
+
+        links { "Cocoa.framework", "OpenGL.framework", "IOKit.framework" }
+    
+    filter { "system:macosx", "architecture:x86_64"}
+        defines
+        {
+            "MINECRAFT_PLATFORM_MAC"
+        }
+
+        libdirs 
+        {
+            "%{dependencies.glfw}/lib-x86_64"
         }
 
         links { "Cocoa.framework", "OpenGL.framework", "IOKit.framework" }

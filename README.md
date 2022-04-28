@@ -6,7 +6,8 @@ C++ Minecraft Clone
 - [x] Generate YAML texture uvs
 - [x] Implement event system
 - [x] Implement layer system
-- [ ] Create window and integrate with event system
+- [x] Create window and integrate with event system
+- [ ] Begin rendering implementation and integrate with layers
 
 ## Resources
 - [stb](https://github.com/nothings/stb) by Sean Barrett

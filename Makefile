@@ -10,17 +10,19 @@ endif
 
 ifeq ($(config),debug)
   yaml_cpp_config = debug
+  glad_config = debug
   minecraft_config = debug
 
 else ifeq ($(config),release)
   yaml_cpp_config = release
+  glad_config = release
   minecraft_config = release
 
 else
   $(error "invalid configuration $(config)")
 endif
 
-PROJECTS := yaml-cpp minecraft
+PROJECTS := yaml-cpp glad minecraft
 
 .PHONY: all clean help $(PROJECTS) 
 
@@ -32,7 +34,13 @@ ifneq (,$(yaml_cpp_config))
 	@${MAKE} --no-print-directory -C deps/yaml-cpp -f Makefile config=$(yaml_cpp_config)
 endif
 
-minecraft: yaml-cpp
+glad:
+ifneq (,$(glad_config))
+	@echo "==== Building glad ($(glad_config)) ===="
+	@${MAKE} --no-print-directory -C deps/glad -f Makefile config=$(glad_config)
+endif
+
+minecraft: glad yaml-cpp
 ifneq (,$(minecraft_config))
 	@echo "==== Building minecraft ($(minecraft_config)) ===="
 	@${MAKE} --no-print-directory -C minecraft -f Makefile config=$(minecraft_config)
@@ -40,6 +48,7 @@ endif
 
 clean:
 	@${MAKE} --no-print-directory -C deps/yaml-cpp -f Makefile clean
+	@${MAKE} --no-print-directory -C deps/glad -f Makefile clean
 	@${MAKE} --no-print-directory -C minecraft -f Makefile clean
 
 help:
@@ -53,6 +62,7 @@ help:
 	@echo "   all (default)"
 	@echo "   clean"
 	@echo "   yaml-cpp"
+	@echo "   glad"
 	@echo "   minecraft"
 	@echo ""
 	@echo "For more information, see https://github.com/premake/premake-core/wiki"

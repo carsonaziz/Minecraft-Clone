@@ -27,11 +27,11 @@ endif
 ifeq ($(origin AR), default)
   AR = ar
 endif
-INCLUDES += -isystem include -isystem ../deps/spdlog/include -isystem ../deps/stb -isystem ../deps/yaml-cpp/include -isystem ../deps/glm
+INCLUDES += -isystem include -isystem ../deps/spdlog/include -isystem ../deps/stb -isystem ../deps/yaml-cpp/include -isystem ../deps/glm -isystem ../deps/glfw/include -isystem ../deps/glad/include
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
-ALL_LDFLAGS += $(LDFLAGS)
+ALL_LDFLAGS += $(LDFLAGS) -L../deps/glfw/lib-arm64
 LINKCMD = $(CXX) -o "$@" $(OBJECTS) $(RESOURCES) $(ALL_LDFLAGS) $(LIBS)
 define PREBUILDCMDS
 endef
@@ -47,8 +47,8 @@ OBJDIR = ../bin-int/Debug/macosx
 DEFINES += -DMINECRAFT_PLATFORM_MAC -DMINECRAFT_CONFIG_DEBUG
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -g
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -g -std=c++17
-LIBS += ../deps/yaml-cpp/bin/Debug/macosx/libyaml-cpp.a -framework Cocoa -framework OpenGL -framework IOKit
-LDDEPS += ../deps/yaml-cpp/bin/Debug/macosx/libyaml-cpp.a
+LIBS += ../deps/glad/bin/Debug/macosx/libglad.a ../deps/yaml-cpp/bin/Debug/macosx/libyaml-cpp.a -framework Cocoa -framework OpenGL -framework IOKit -lglfw3
+LDDEPS += ../deps/glad/bin/Debug/macosx/libglad.a ../deps/yaml-cpp/bin/Debug/macosx/libyaml-cpp.a
 
 else ifeq ($(config),release)
 TARGETDIR = ../bin/Release/macosx
@@ -57,8 +57,8 @@ OBJDIR = ../bin-int/Release/macosx
 DEFINES += -DMINECRAFT_PLATFORM_MAC -DMINECRAFT_CONFIG_RELEASE
 ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -O2
 ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -O2 -std=c++17
-LIBS += ../deps/yaml-cpp/bin/Release/macosx/libyaml-cpp.a -framework Cocoa -framework OpenGL -framework IOKit
-LDDEPS += ../deps/yaml-cpp/bin/Release/macosx/libyaml-cpp.a
+LIBS += ../deps/glad/bin/Release/macosx/libglad.a ../deps/yaml-cpp/bin/Release/macosx/libyaml-cpp.a -framework Cocoa -framework OpenGL -framework IOKit -lglfw3
+LDDEPS += ../deps/glad/bin/Release/macosx/libglad.a ../deps/yaml-cpp/bin/Release/macosx/libyaml-cpp.a
 
 endif
 
@@ -77,12 +77,14 @@ GENERATED += $(OBJDIR)/layer_stack.o
 GENERATED += $(OBJDIR)/log.o
 GENERATED += $(OBJDIR)/main.o
 GENERATED += $(OBJDIR)/texture_packer.o
+GENERATED += $(OBJDIR)/window.o
 GENERATED += $(OBJDIR)/yaml_util.o
 OBJECTS += $(OBJDIR)/application.o
 OBJECTS += $(OBJDIR)/layer_stack.o
 OBJECTS += $(OBJDIR)/log.o
 OBJECTS += $(OBJDIR)/main.o
 OBJECTS += $(OBJDIR)/texture_packer.o
+OBJECTS += $(OBJDIR)/window.o
 OBJECTS += $(OBJDIR)/yaml_util.o
 
 # Rules
@@ -154,6 +156,9 @@ $(OBJDIR)/layer_stack.o: src/core/layers/layer_stack.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/log.o: src/core/log.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/window.o: src/core/window.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/main.o: src/main.cpp

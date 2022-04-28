@@ -21,7 +21,7 @@ namespace Minecraft
 
         bool test(Event& event)
         {
-            MC_LOG_WARN(event.to_string());
+            // MC_LOG_WARN(event.to_string());
 
             return true;
         }
