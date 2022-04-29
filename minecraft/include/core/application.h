@@ -1,9 +1,11 @@
 #pragma once
+
 #include <memory>
 
 #include "events/window_event.h"
 #include "layers/layer_stack.h"
 #include "window.h"
+#include "render/renderer.h"
 
 namespace Minecraft
 {
@@ -11,6 +13,7 @@ namespace Minecraft
     {
     private:
         std::unique_ptr<Window> m_window;
+        std::shared_ptr<Renderer> m_renderer;
         std::unique_ptr<LayerStack> m_layer_stack;
 
         Layer* m_pause_menu_layer;

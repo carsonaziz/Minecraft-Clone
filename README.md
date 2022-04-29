@@ -7,7 +7,7 @@ C++ Minecraft Clone
 - [x] Implement event system
 - [x] Implement layer system
 - [x] Create window and integrate with event system
-- [ ] Begin rendering implementation and integrate with layers
+- [x] Begin rendering implementation and integrate with layers
 
 ## Resources
 - [stb](https://github.com/nothings/stb) by Sean Barrett

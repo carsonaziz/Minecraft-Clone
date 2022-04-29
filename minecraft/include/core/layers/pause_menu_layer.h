@@ -1,3 +1,5 @@
+#pragma once
+
 #include "layer.h"
 
 #include "core/log.h"
@@ -16,7 +18,7 @@ namespace Minecraft
             handler.handle_event<KeyPressedEvent>(std::bind(&PauseMenuLayer::test, this, std::placeholders::_1));
         }
 
-        virtual void render() override {}
+        virtual void render(std::shared_ptr<Renderer>& renderer) override {}
         virtual void update() override {}
 
         bool test(Event& event)

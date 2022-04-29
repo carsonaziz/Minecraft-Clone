@@ -1,6 +1,7 @@
 #pragma once
 
 #include "core/events/event.h"
+#include "core/render/renderer.h"
 
 namespace Minecraft
 {
@@ -11,7 +12,7 @@ namespace Minecraft
         virtual ~Layer() {}
 
         virtual void on_event(Event& event) = 0;
-        virtual void render() = 0;
+        virtual void render(std::shared_ptr<Renderer>& renderer) = 0;
         virtual void update() = 0;
     };
 }

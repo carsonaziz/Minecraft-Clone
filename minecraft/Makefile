@@ -73,17 +73,27 @@ GENERATED :=
 OBJECTS :=
 
 GENERATED += $(OBJDIR)/application.o
+GENERATED += $(OBJDIR)/buffer.o
+GENERATED += $(OBJDIR)/game_layer.o
 GENERATED += $(OBJDIR)/layer_stack.o
 GENERATED += $(OBJDIR)/log.o
 GENERATED += $(OBJDIR)/main.o
+GENERATED += $(OBJDIR)/renderer.o
+GENERATED += $(OBJDIR)/shader.o
 GENERATED += $(OBJDIR)/texture_packer.o
+GENERATED += $(OBJDIR)/vertex_array.o
 GENERATED += $(OBJDIR)/window.o
 GENERATED += $(OBJDIR)/yaml_util.o
 OBJECTS += $(OBJDIR)/application.o
+OBJECTS += $(OBJDIR)/buffer.o
+OBJECTS += $(OBJDIR)/game_layer.o
 OBJECTS += $(OBJDIR)/layer_stack.o
 OBJECTS += $(OBJDIR)/log.o
 OBJECTS += $(OBJDIR)/main.o
+OBJECTS += $(OBJDIR)/renderer.o
+OBJECTS += $(OBJDIR)/shader.o
 OBJECTS += $(OBJDIR)/texture_packer.o
+OBJECTS += $(OBJDIR)/vertex_array.o
 OBJECTS += $(OBJDIR)/window.o
 OBJECTS += $(OBJDIR)/yaml_util.o
 
@@ -152,10 +162,25 @@ endif
 $(OBJDIR)/application.o: src/core/application.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/game_layer.o: src/core/layers/game_layer.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/layer_stack.o: src/core/layers/layer_stack.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/log.o: src/core/log.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/buffer.o: src/core/render/buffer.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/renderer.o: src/core/render/renderer.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/shader.o: src/core/render/shader.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/vertex_array.o: src/core/render/vertex_array.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/window.o: src/core/window.cpp

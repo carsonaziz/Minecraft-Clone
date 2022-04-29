@@ -1,7 +1,10 @@
+#pragma once
+
 #include "layer.h"
 
 #include "core/log.h"
 #include "core/events/key_event.h"
+#include "core/render/renderer.h"
 
 namespace Minecraft
 {
@@ -10,14 +13,9 @@ namespace Minecraft
     public:
         GameLayer() : Layer() {}
 
-        virtual void on_event(Event& event) override
-        {
-            EventHandler handler(event);
-            handler.handle_event<KeyPressedEvent>(std::bind(&GameLayer::test, this, std::placeholders::_1));
-        }
-
-        virtual void render() override {}
+        virtual void on_event(Event& event) override;
         virtual void update() override {}
+        virtual void render(std::shared_ptr<Renderer>& renderer) override;
 
         bool test(Event& event)
         {
