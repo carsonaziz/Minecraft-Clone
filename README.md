@@ -8,11 +8,15 @@ C++ Minecraft Clone
 - [x] Implement layer system
 - [x] Create window and integrate with event system
 - [x] Begin rendering implementation and integrate with layers
+- [x] Add input polling
+- [x] Add 3D camera
 
 ## Resources
 - [stb](https://github.com/nothings/stb) by Sean Barrett
 - [spdlog](https://github.com/gabime/spdlog) by Gabi Melman
 - [yaml-cpp](https://github.com/jbeder/yaml-cpp) by Jesse Beder
 - [glm](https://github.com/g-truc/glm) by G-Truc
+- [glfw](https://github.com/glfw/glfw) by GLFW
+- [glad](https://github.com/Dav1dde/glad) by David Herberth 
 - Texture pack [Faithful 1.18](https://faithful.team) by Faithful
 - The Cherno Game Engine Series

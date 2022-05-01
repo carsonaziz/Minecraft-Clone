@@ -74,7 +74,10 @@ OBJECTS :=
 
 GENERATED += $(OBJDIR)/application.o
 GENERATED += $(OBJDIR)/buffer.o
+GENERATED += $(OBJDIR)/camera.o
+GENERATED += $(OBJDIR)/camera_controller.o
 GENERATED += $(OBJDIR)/game_layer.o
+GENERATED += $(OBJDIR)/input.o
 GENERATED += $(OBJDIR)/layer_stack.o
 GENERATED += $(OBJDIR)/log.o
 GENERATED += $(OBJDIR)/main.o
@@ -86,7 +89,10 @@ GENERATED += $(OBJDIR)/window.o
 GENERATED += $(OBJDIR)/yaml_util.o
 OBJECTS += $(OBJDIR)/application.o
 OBJECTS += $(OBJDIR)/buffer.o
+OBJECTS += $(OBJDIR)/camera.o
+OBJECTS += $(OBJDIR)/camera_controller.o
 OBJECTS += $(OBJDIR)/game_layer.o
+OBJECTS += $(OBJDIR)/input.o
 OBJECTS += $(OBJDIR)/layer_stack.o
 OBJECTS += $(OBJDIR)/log.o
 OBJECTS += $(OBJDIR)/main.o
@@ -160,6 +166,15 @@ endif
 # #############################################
 
 $(OBJDIR)/application.o: src/core/application.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/camera.o: src/core/camera/camera.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/camera_controller.o: src/core/camera/camera_controller.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/input.o: src/core/input.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/game_layer.o: src/core/layers/game_layer.cpp

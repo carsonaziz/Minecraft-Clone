@@ -6,9 +6,11 @@
 
 namespace Minecraft
 {
+    Application* Application::s_instance = nullptr;
+
     Application::Application() : m_running(true)
     {
-        m_window = std::make_unique<Window>();
+        m_window = std::make_shared<Window>();
         m_layer_stack = std::make_unique<LayerStack>();
         m_renderer = std::make_shared<Renderer>();
 
@@ -20,17 +22,19 @@ namespace Minecraft
         m_layer_stack->push(m_game_layer);
     }
 
-    std::unique_ptr<Application> Application::create()
+    Application* Application::create()
     {
-        return std::make_unique<Application>();
-        MC_LOG_INFO("Application created");
+        if (s_instance == nullptr)
+        {
+            s_instance = new Application();
+        }
+        return s_instance;
     }
 
     void Application::on_event(Event& event)
     {
         EventHandler handler(event);
         handler.handle_event<WindowCloseEvent>(std::bind(&Application::on_window_close, this, std::placeholders::_1));
-        MC_LOG_WARN("{}", event.to_string());
 
         for (auto it = m_layer_stack->begin(); it != m_layer_stack->end(); it++)
         {

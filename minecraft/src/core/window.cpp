@@ -61,6 +61,8 @@ namespace Minecraft
             return;
         }
 
+        // glfwSwapInterval(0);
+
         glfwSetWindowUserPointer(m_window, &m_data);
 
         // Window callbacks

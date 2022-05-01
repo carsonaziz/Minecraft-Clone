@@ -8,4 +8,6 @@ int main()
     auto app = Minecraft::Application::create();
     Minecraft::TexturePacker::pack(32);
     app->run();
+
+    delete app;
 }

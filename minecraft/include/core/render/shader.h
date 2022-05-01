@@ -1,5 +1,8 @@
 #pragma once
 
+#include <glm/glm.hpp>
+#include <string>
+
 namespace Minecraft
 {
     class Shader
@@ -15,5 +18,7 @@ namespace Minecraft
         ~Shader();
 
         void use();
+        void load_float3(const glm::vec3& vec, const std::string& name);
+        void load_mat4(const glm::mat4& mat, const std::string& name);
     };
 }

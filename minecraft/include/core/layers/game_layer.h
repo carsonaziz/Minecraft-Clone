@@ -3,25 +3,22 @@
 #include "layer.h"
 
 #include "core/log.h"
-#include "core/events/key_event.h"
 #include "core/render/renderer.h"
+#include "core/camera/camera_controller.h"
+#include "core/events/mouse_event.h"
 
 namespace Minecraft
 {
     class GameLayer : public Layer
     {
+    private:
+        std::shared_ptr<CameraController> m_camera_controller;
+
     public:
-        GameLayer() : Layer() {}
+        GameLayer();
 
         virtual void on_event(Event& event) override;
-        virtual void update() override {}
+        virtual void update() override;
         virtual void render(std::shared_ptr<Renderer>& renderer) override;
-
-        bool test(Event& event)
-        {
-            // MC_LOG_WARN("{}, in game", event.to_string());
-
-            return true;
-        }
     };
 }
