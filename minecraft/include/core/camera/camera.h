@@ -18,7 +18,7 @@ namespace Minecraft
         Camera(float fov, int width, int height, glm::vec3 position);
         ~Camera();
 
-        void set_view(const glm::vec3& position);
+        void set_view(const glm::vec3& position, const glm::vec3& look_at);
         inline const glm::mat4& get_view() { return m_view; }
 
         inline const glm::mat4& get_projection() { return m_projection; }

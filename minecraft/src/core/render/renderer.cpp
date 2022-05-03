@@ -24,7 +24,7 @@ namespace Minecraft
 
     void Renderer::init()
     {
-        glClearColor(0.8f, 0.3f, 0.2f, 1.0f);
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     }
 
     void Renderer::clear()

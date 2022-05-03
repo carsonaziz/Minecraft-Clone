@@ -5,7 +5,6 @@
 #include "core/render/vertex_array.h"
 #include "core/render/buffer.h"
 #include "core/render/shader.h"
-#include "core/input.h"
 
 namespace Minecraft
 {
@@ -27,7 +26,6 @@ namespace Minecraft
             0.0f, 0.0f, 0.0f,
             0.0f, 1.0f, 0.0f,
             1.0f,  1.0f, 0.0f,
-
             0.0f, 0.0f, 0.0f,
             1.0f,  1.0f, 0.0f,
             1.0f, 0.0f, 0.0f,
@@ -35,7 +33,6 @@ namespace Minecraft
             1.0f, 0.0f, -1.0f,
             1.0f, 1.0f, -1.0f,
             0.0f,  1.0f, -1.0f,
-
             1.0f, 0.0f, -1.0f,
             0.0f,  1.0f, -1.0f,
             0.0f, 0.0f, -1.0f,
@@ -43,11 +40,11 @@ namespace Minecraft
             0.0f, 0.0f, -1.0f,
             0.0f, 1.0f, -1.0f,
             0.0f, 1.0f, 0.0f,
-
             0.0f, 0.0f, -1.0f,
             0.0f, 1.0f, 0.0f,
-            0.0f, 0.0f, 0.0f
+            0.0f, 0.0f, 0.0f,
 
+            
         };
 
         const char* vertex_source = R"(

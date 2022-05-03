@@ -25,6 +25,6 @@ namespace Minecraft
         void update();
         void on_event();
 
-        inline std::shared_ptr<Camera>& get_camera() { return m_camera; }
+        inline const std::shared_ptr<Camera>& get_camera() { return m_camera; }
     };
 }

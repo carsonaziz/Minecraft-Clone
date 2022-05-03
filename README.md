@@ -10,6 +10,7 @@ C++ Minecraft Clone
 - [x] Begin rendering implementation and integrate with layers
 - [x] Add input polling
 - [x] Add 3D camera
+- [x] Added movement for 3D camera controller
 
 ## Resources
 - [stb](https://github.com/nothings/stb) by Sean Barrett
