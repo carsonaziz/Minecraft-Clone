@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include <memory>
 
 #include "buffer.h"
 
@@ -12,15 +11,16 @@ namespace Minecraft
     private:
         unsigned int m_vao;
         int m_vertex_count;
-        std::vector<std::shared_ptr<VertexBuffer>> m_buffers;
+        std::vector<VertexBuffer> m_buffers;
     public:
-        VertexArray();
+        VertexArray(int vertex_count);
         ~VertexArray();
 
-        void bind();
-        void unbind();
+        void bind() const;
+        void unbind() const;
 
-        inline int get_vertex_count() { return m_vertex_count; }
-        void add_vertex_buffer(std::shared_ptr<VertexBuffer>& buffer);
+        void add_vertex_buffer(const VertexBuffer& buffer, int type);
+
+        inline int get_vertex_count() const { return m_vertex_count; }
     };
 }

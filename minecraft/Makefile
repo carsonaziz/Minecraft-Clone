@@ -76,7 +76,9 @@ GENERATED += $(OBJDIR)/application.o
 GENERATED += $(OBJDIR)/buffer.o
 GENERATED += $(OBJDIR)/camera.o
 GENERATED += $(OBJDIR)/camera_controller.o
+GENERATED += $(OBJDIR)/chunk.o
 GENERATED += $(OBJDIR)/game_layer.o
+GENERATED += $(OBJDIR)/generation.o
 GENERATED += $(OBJDIR)/input.o
 GENERATED += $(OBJDIR)/layer_stack.o
 GENERATED += $(OBJDIR)/log.o
@@ -91,7 +93,9 @@ OBJECTS += $(OBJDIR)/application.o
 OBJECTS += $(OBJDIR)/buffer.o
 OBJECTS += $(OBJDIR)/camera.o
 OBJECTS += $(OBJDIR)/camera_controller.o
+OBJECTS += $(OBJDIR)/chunk.o
 OBJECTS += $(OBJDIR)/game_layer.o
+OBJECTS += $(OBJDIR)/generation.o
 OBJECTS += $(OBJDIR)/input.o
 OBJECTS += $(OBJDIR)/layer_stack.o
 OBJECTS += $(OBJDIR)/log.o
@@ -208,6 +212,12 @@ $(OBJDIR)/texture_packer.o: src/utils/texture_packer.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/yaml_util.o: src/utils/yaml_util.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/chunk.o: src/world_generation/chunk.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/generation.o: src/world_generation/generation.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 

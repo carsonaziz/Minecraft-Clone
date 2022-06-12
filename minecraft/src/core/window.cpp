@@ -61,7 +61,7 @@ namespace Minecraft
             return;
         }
 
-        // glfwSwapInterval(0);
+        glfwSwapInterval(1);
 
         glfwSetWindowUserPointer(m_window, &m_data);
 

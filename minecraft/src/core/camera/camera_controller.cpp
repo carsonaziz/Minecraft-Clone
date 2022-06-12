@@ -32,7 +32,7 @@ namespace Minecraft
 
         float normalized_xz = glm::sqrt((m_look_at.x * m_look_at.x) + (m_look_at.z * m_look_at.z));
 
-        // calculate position for key pressed taking into account where the camera is looking
+        // calculate position for key pressed, taking into account where the camera is looking
         // normalized_xz is used so that movement speed doesn't slow when looking down or up
         if (Input::is_key_down(GLFW_KEY_W))
         {

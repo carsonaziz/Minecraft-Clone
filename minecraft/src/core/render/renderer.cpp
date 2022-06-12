@@ -9,6 +9,8 @@ namespace Minecraft
     Renderer::Renderer()
     {
         init();
+        glEnable(GL_CULL_FACE);
+        // glCullFace(GL_CW);
     }
 
     Renderer::~Renderer()
@@ -24,7 +26,8 @@ namespace Minecraft
 
     void Renderer::init()
     {
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+        glEnable(GL_DEPTH_TEST);
     }
 
     void Renderer::clear()

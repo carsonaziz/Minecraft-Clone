@@ -6,7 +6,7 @@
 
 namespace Minecraft
 {
-    VertexArray::VertexArray()
+    VertexArray::VertexArray(int vertex_count) : m_vertex_count(vertex_count)
     {
         glGenVertexArrays(1, &m_vao);
     }
@@ -16,29 +16,23 @@ namespace Minecraft
         glDeleteVertexArrays(1, &m_vao);
     }
 
-    void VertexArray::bind()
+    void VertexArray::bind() const
     {
         glBindVertexArray(m_vao);
     }
 
-    void VertexArray::unbind()
+    void VertexArray::unbind() const
     {
         glBindVertexArray(0);
     }
 
-    void VertexArray::add_vertex_buffer(std::shared_ptr<VertexBuffer>& buffer)
+    void VertexArray::add_vertex_buffer(const VertexBuffer& buffer, int type)
     {
         glBindVertexArray(m_vao);
-        buffer->bind();
-        BufferLayout layout = buffer->get_layout();
+        BufferLayout layout = buffer.get_layout();
 
-        glVertexAttribPointer(layout.Index, layout.Length, GL_FLOAT, GL_FALSE, sizeof(float) * layout.Length, nullptr);
+        glVertexAttribPointer(layout.Index, layout.Length, type, GL_FALSE, layout.DataSize, nullptr);
         glEnableVertexAttribArray(0);
-
-        if (m_buffers.empty())
-            m_vertex_count = buffer->get_vertex_count();
-        else if (m_vertex_count != buffer->get_vertex_count())
-            MC_LOG_ERROR("Vertex count does not match");
 
         m_buffers.push_back(buffer);
         glBindVertexArray(0);
