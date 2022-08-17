@@ -61,7 +61,7 @@ namespace Minecraft
             return;
         }
 
-        glfwSwapInterval(1);
+        glfwSwapInterval(0);
 
         glfwSetWindowUserPointer(m_window, &m_data);
 
@@ -156,10 +156,20 @@ namespace Minecraft
         vsync ? glfwSwapInterval(1) : glfwSwapInterval(0);
     }
 
+    void Window::set_title(const std::string& title)
+    {
+        glfwSetWindowTitle(m_window, title.c_str());
+    }
+
     void Window::swap_and_poll()
     {
         glfwSwapBuffers(m_window);
         glfwPollEvents();
+    }
+
+    const double Window::get_time()
+    {
+        return glfwGetTime();
     }
 
     void Window::shutdown()

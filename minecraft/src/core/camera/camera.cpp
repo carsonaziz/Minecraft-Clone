@@ -10,11 +10,16 @@ namespace Minecraft
         m_view = glm::lookAt(position, position + glm::vec3(0, 0, -1), glm::vec3(0, 1, 0));
     }
 
+    Camera::Camera(glm::vec3 position)
+    {
+        m_projection = glm::perspective(45.0f, (float)1280/(float)720, 0.1f, 1000.0f);
+        m_view = glm::lookAt(position, position + glm::vec3(0, 0, -1), glm::vec3(0, 1, 0));
+    }
+
     Camera::~Camera() {}
 
     void Camera::set_view(const glm::vec3& position, const glm::vec3& look_at)
     {
-        // m_view = glm::lookAt(position, position + glm::vec3(0, 0, -1), glm::vec3(0, 1, 0));
         m_view = glm::lookAt(position, position + look_at, glm::vec3(0, 1, 0));
     }
 }

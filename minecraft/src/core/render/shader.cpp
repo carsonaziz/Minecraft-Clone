@@ -4,13 +4,17 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "core/log.h"
+#include "core/utils/file_reader.h"
 
 namespace Minecraft
 {
-    Shader::Shader(const char* vertex_source, const char* fragment_source)
+    Shader::Shader(const std::string& vertex_path, const std::string& fragment_path)
     {
-        unsigned int vertex_shader = create_shader(GL_VERTEX_SHADER, vertex_source);
-        unsigned int fragment_shader = create_shader(GL_FRAGMENT_SHADER, fragment_source);
+        std::string vertex_source = FileReader::read_file(vertex_path);
+        std::string fragment_source = FileReader::read_file(fragment_path);
+
+        unsigned int vertex_shader = create_shader(GL_VERTEX_SHADER, vertex_source.c_str());
+        unsigned int fragment_shader = create_shader(GL_FRAGMENT_SHADER, fragment_source.c_str());
         create_program(vertex_shader, fragment_shader);
     }
 

@@ -11,7 +11,9 @@ C++ Minecraft Clone
 - [x] Add input polling
 - [x] Add 3D camera
 - [x] Added movement for 3D camera controller
-- [ ] Begin chunk generation
+- [x] Begin chunk generation
+- [ ] Add textures
+- [ ] Create world
 
 ## Resources
 - [stb](https://github.com/nothings/stb) by Sean Barrett

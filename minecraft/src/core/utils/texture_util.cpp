@@ -1,4 +1,4 @@
-#include "utils/texture_packer.h"
+#include "core/utils/texture_util.h"
 
 #include <filesystem>
 #include <vector>
@@ -9,13 +9,13 @@
 #include <stb_image.h>
 
 #include "core/log.h"
-#include "utils/yaml_util.h"
-#include "utils/texture_format.h"
+#include "core/utils/yaml_util.h"
+#include "world_generation/format.h"
 
 
 namespace Minecraft
 {
-    namespace TexturePacker
+    namespace TextureUtil
     {   
         std::string base_path = "resourcepacks/Faithful/assets/minecraft/textures/block";
         int img_count = 0;
@@ -63,7 +63,7 @@ namespace Minecraft
             stbi_write_png("minecraft/res/texture_atlas.png", packed_width * size, packed_height * size, packed_channels, packed_texture, packed_width * size * packed_channels);
             delete[] packed_texture;
 
-            YamlUtil::write_texture_formats(texture_formats);
+            YamlUtil::write_texture_formats(texture_formats, "minecraft/res/blockdata/texture_formats.yaml");
         }
 
         int get_img_block_height(const std::string path)
@@ -141,10 +141,25 @@ namespace Minecraft
             TextureFormat format;
             format.name = name;
             format.uv0 = glm::vec2((float)index_x / (float)packed_width, 1 - (float)index_y / (float)packed_height - 1.0f / (float)packed_height);
-            format.uv0 = glm::vec2((float)index_x / (float)packed_width, 1 - (float)index_y / (float)packed_height);
-            format.uv0 = glm::vec2((float)index_x / (float)packed_width + 1.0f / (float)packed_width, 1 - (float)index_y / (float)packed_height);
-            format.uv0 = glm::vec2((float)index_x / (float)packed_width + 1.0f / (float)packed_width, 1 - (float)index_y / (float)packed_height - 1.0f / (float)packed_height);
+            format.uv1 = glm::vec2((float)index_x / (float)packed_width, 1 - (float)index_y / (float)packed_height);
+            format.uv2 = glm::vec2((float)index_x / (float)packed_width + 1.0f / (float)packed_width, 1 - (float)index_y / (float)packed_height);
+            format.uv3 = glm::vec2((float)index_x / (float)packed_width + 1.0f / (float)packed_width, 1 - (float)index_y / (float)packed_height - 1.0f / (float)packed_height);
+
             texture_formats.push_back(format);
+        }
+
+        unsigned char* load_image(const std::string& filepath, int* width, int* height, int* channels)
+        {
+            stbi_set_flip_vertically_on_load(true);
+            unsigned char *data = stbi_load(filepath.c_str(), width, height, channels, 0);
+
+            if (data == NULL)
+            {
+                MC_LOG_ERROR("Error in loading image");
+                exit(1);
+            }
+
+            return data;
         }
     }
 }

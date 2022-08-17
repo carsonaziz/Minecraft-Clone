@@ -1,18 +1,23 @@
 #pragma once
 
 #include <glm/glm.hpp>
-#include <iostream>
 
 #include "chunk.h"
 #include "core/render/vertex_array.h"
+#include "format.h"
 
 namespace Minecraft
 {
     namespace Generation
     {
-        // Will get much more complicated, will likely be multiple functions
-        void generate_blocks(Chunk& chunk);
+        static std::unordered_map<std::string, TextureFormat> texture_map;
+        static std::unordered_map<int, BlockFormat> block_map;
 
-        const VertexArray generate_mesh(Chunk& chunk);
+        void init();
+
+        // Will get much more complicated, will likely be multiple functions
+        void generate_blocks(Chunk* chunk);
+
+        void generate_mesh(Chunk* chunk);
     }
 }

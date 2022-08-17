@@ -14,7 +14,7 @@ namespace Minecraft
         glm::vec3 m_rotation;
         glm::vec3 m_look_at;
 
-        float m_movement_speed = 0.125f;
+        float m_look_speed = 7.5f;
 
         std::shared_ptr<Camera> m_camera;
 
@@ -22,7 +22,7 @@ namespace Minecraft
         CameraController(const glm::vec3& position = glm::vec3(0, 0, 10));
         ~CameraController() {}
 
-        void update();
+        void update(float dt);
         void on_event();
 
         inline const std::shared_ptr<Camera>& get_camera() { return m_camera; }

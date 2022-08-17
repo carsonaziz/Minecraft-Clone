@@ -42,12 +42,15 @@ namespace Minecraft
         ~Window();
 
         void set_vsync(bool vsync);
+        void set_title(const std::string& title);
         void swap_and_poll();
+
 
         void set_event_callback(const std::function<void(Event& e)>& callback);
 
         inline GLFWwindow* get_window_handle() const { return m_window; }
-        inline unsigned int get_width() { return m_data.Width; }
-        inline unsigned int get_height() { return m_data.Height; }
+        inline unsigned int get_width() const { return m_data.Width; }
+        inline unsigned int get_height() const { return m_data.Height; }
+        const double get_time();
     };
 }

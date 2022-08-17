@@ -3,6 +3,8 @@
 #include "core/log.h"
 #include "core/layers/pause_menu_layer.h"
 #include "core/layers/game_layer.h"
+#include "core/render/renderer.h"
+#include "core/utils/fps_counter.h"
 
 namespace Minecraft
 {
@@ -12,14 +14,13 @@ namespace Minecraft
     {
         m_window = std::make_shared<Window>();
         m_layer_stack = std::make_unique<LayerStack>();
-        m_renderer = std::make_shared<Renderer>();
 
         m_window->set_event_callback(std::bind(&Application::on_event, this, std::placeholders::_1));
-        m_pause_menu_layer = new PauseMenuLayer();
-        m_game_layer = new GameLayer();
 
-        m_layer_stack->push(m_pause_menu_layer);
-        m_layer_stack->push(m_game_layer);
+        m_layer_stack->push(new PauseMenuLayer());
+        m_layer_stack->push(new GameLayer());
+
+        Render::init();
     }
 
     Application* Application::create()
@@ -52,17 +53,37 @@ namespace Minecraft
 
     void Application::run()
     {
+        double dt = 0;
+        double previous_time = m_window->get_time();
+        double current_time = m_window->get_time();
+
+        FPSCounter fps_counter;
+
         while(m_running)
-        {
-            m_renderer->clear();
+        {   
+            dt = current_time - previous_time;
+            previous_time = current_time;
+
+            // title string
+            std::string title = "FPS ";
+            title.append(std::to_string(fps_counter.tick()));
+            m_window->set_title(title);
 
             for (auto it = m_layer_stack->begin(); it != m_layer_stack->end(); it++)
             {
-                (*it)->update();
-                (*it)->render(m_renderer);
+                (*it)->update(dt);
+            }
+
+            Render::clear();
+
+            for (auto it = m_layer_stack->begin(); it != m_layer_stack->end(); it++)
+            {
+                (*it)->render();
             }
 
             m_window->swap_and_poll();
+
+            current_time = m_window->get_time();
         }
     }
 }

@@ -1,17 +1,14 @@
 #pragma once
 
 #include "vertex_array.h"
+#include "world_generation/chunk.h"
 
 namespace Minecraft
 {
-    class Renderer
+    namespace Render
     {
-    public:
-        Renderer();
-        ~Renderer();
-
         void init();
         void clear();
-        void render(VertexArray& vao);
+        void render(std::shared_ptr<VertexArray> vao);
     };
 }

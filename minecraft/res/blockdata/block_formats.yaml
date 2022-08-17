@@ -1,0 +1,24 @@
+dirt:
+  id: 1
+  top: "dirt" 
+  bottom: "dirt" 
+  left: "dirt" 
+  right: "dirt" 
+  front: "dirt" 
+  back: "dirt" 
+grass_block:
+  id: 2
+  top: "grass_block_top" 
+  bottom: "dirt" 
+  left: "grass_block_side" 
+  right: "grass_block_side" 
+  front: "grass_block_side" 
+  back: "grass_block_side"
+stone:
+  id: 3
+  top: "stone" 
+  bottom: "stone" 
+  left: "stone" 
+  right: "stone" 
+  front: "stone" 
+  back: "stone" 

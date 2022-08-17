@@ -28,13 +28,11 @@ namespace Minecraft
 
     void VertexArray::add_vertex_buffer(const VertexBuffer& buffer, int type)
     {
-        glBindVertexArray(m_vao);
         BufferLayout layout = buffer.get_layout();
 
         glVertexAttribPointer(layout.Index, layout.Length, type, GL_FALSE, layout.DataSize, nullptr);
-        glEnableVertexAttribArray(0);
+        glEnableVertexAttribArray(layout.Index);
 
         m_buffers.push_back(buffer);
-        glBindVertexArray(0);
     }
 }

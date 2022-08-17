@@ -25,9 +25,12 @@ namespace Minecraft
         unsigned int m_vbo;
         BufferLayout m_layout;
 
+    private:
+        template <typename T>
+        void init(T* data, int data_size);
     public:
-        // VertexBuffer(float* data, int data_size, const BufferLayout& layout);
         VertexBuffer(glm::tvec3<uint16_t>* data, int data_size, const BufferLayout& layout);
+        VertexBuffer(glm::tvec2<float>* data, int data_size, const BufferLayout& layout);
         ~VertexBuffer();
 
         void bind();

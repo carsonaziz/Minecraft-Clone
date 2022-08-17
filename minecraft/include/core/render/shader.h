@@ -14,7 +14,7 @@ namespace Minecraft
         unsigned int create_shader(int type, const char* shader_source);
         void create_program(unsigned int vertex_shader, unsigned int fragment_shader);
     public:
-        Shader(const char* vertex_source, const char* fragment_source);
+        Shader(const std::string& vertex_path, const std::string& fragment_path);
         ~Shader();
 
         void use();
