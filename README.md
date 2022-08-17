@@ -12,8 +12,9 @@ C++ Minecraft Clone
 - [x] Add 3D camera
 - [x] Added movement for 3D camera controller
 - [x] Begin chunk generation
-- [ ] Add textures
-- [ ] Create world
+- [x] Add textures
+- [x] Create world
+- [ ] Remove seams between chunks
 
 ## Resources
 - [stb](https://github.com/nothings/stb) by Sean Barrett
