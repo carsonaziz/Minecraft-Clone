@@ -16,6 +16,7 @@ namespace Minecraft
 
         void bind() const;
         void load_data(const std::string& filepath);
+        void load_data(const unsigned char* data, int width, int height, int channels);
         void unbind() const;
 
         inline int get_width() const { return m_width; }

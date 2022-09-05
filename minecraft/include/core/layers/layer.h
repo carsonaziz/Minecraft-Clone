@@ -1,7 +1,6 @@
 #pragma once
 
 #include "core/events/event.h"
-#include "core/render/renderer.h"
 
 namespace Minecraft
 {

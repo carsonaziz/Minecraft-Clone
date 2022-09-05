@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <cstdint>
 
 namespace Minecraft
 {
@@ -12,5 +13,6 @@ namespace Minecraft
         void generate_texture_format(const std::string name, int index_x, int index_y);
         
         unsigned char* load_image(const std::string& filepath, int* width, int* height, int* channels);
+        unsigned char* load_image_from_int64(uint64_t source);
     }
 }

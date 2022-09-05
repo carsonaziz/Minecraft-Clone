@@ -11,7 +11,7 @@ namespace Minecraft
     class World
     {
     private:
-        int m_render_distance = 18;
+        int m_render_distance = 2;
 
         std::vector<Chunk*> m_chunks;
 

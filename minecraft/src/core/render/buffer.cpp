@@ -14,6 +14,11 @@ namespace Minecraft
         init(data, data_size);
     }
 
+    VertexBuffer::VertexBuffer(glm::tvec3<float>* data, int data_size, const BufferLayout& layout) : m_layout(layout)
+    {
+        init(data, data_size);
+    }
+
     template <typename T>
     void VertexBuffer::init(T* data, int data_size)
     {

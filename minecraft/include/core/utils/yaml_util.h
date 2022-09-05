@@ -4,7 +4,8 @@
 #include <string>
 #include <unordered_map>
 
-#include "world_generation/format.h"
+#include "texture_format.h"
+#include "world_generation/block_format.h"
 
 namespace Minecraft
 {

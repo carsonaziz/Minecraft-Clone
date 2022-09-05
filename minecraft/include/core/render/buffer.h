@@ -31,6 +31,7 @@ namespace Minecraft
     public:
         VertexBuffer(glm::tvec3<uint16_t>* data, int data_size, const BufferLayout& layout);
         VertexBuffer(glm::tvec2<float>* data, int data_size, const BufferLayout& layout);
+        VertexBuffer(glm::tvec3<float>* data, int data_size, const BufferLayout& layout);
         ~VertexBuffer();
 
         void bind();

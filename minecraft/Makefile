@@ -27,7 +27,7 @@ endif
 ifeq ($(origin AR), default)
   AR = ar
 endif
-INCLUDES += -isystem include -isystem ../deps/spdlog/include -isystem ../deps/stb -isystem ../deps/yaml-cpp/include -isystem ../deps/glm -isystem ../deps/glfw/include -isystem ../deps/glad/include
+INCLUDES += -isystem include -isystem res -isystem ../deps/spdlog/include -isystem ../deps/stb -isystem ../deps/yaml-cpp/include -isystem ../deps/glm -isystem ../deps/glfw/include -isystem ../deps/glad/include
 FORCE_INCLUDE +=
 ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
 ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
@@ -77,6 +77,9 @@ GENERATED += $(OBJDIR)/buffer.o
 GENERATED += $(OBJDIR)/camera.o
 GENERATED += $(OBJDIR)/camera_controller.o
 GENERATED += $(OBJDIR)/chunk.o
+GENERATED += $(OBJDIR)/debug.o
+GENERATED += $(OBJDIR)/debug_layer.o
+GENERATED += $(OBJDIR)/debug_render.o
 GENERATED += $(OBJDIR)/file_reader.o
 GENERATED += $(OBJDIR)/fps_counter.o
 GENERATED += $(OBJDIR)/game_layer.o
@@ -85,6 +88,7 @@ GENERATED += $(OBJDIR)/input.o
 GENERATED += $(OBJDIR)/layer_stack.o
 GENERATED += $(OBJDIR)/log.o
 GENERATED += $(OBJDIR)/main.o
+GENERATED += $(OBJDIR)/quad.o
 GENERATED += $(OBJDIR)/renderer.o
 GENERATED += $(OBJDIR)/shader.o
 GENERATED += $(OBJDIR)/texture.o
@@ -99,6 +103,9 @@ OBJECTS += $(OBJDIR)/buffer.o
 OBJECTS += $(OBJDIR)/camera.o
 OBJECTS += $(OBJDIR)/camera_controller.o
 OBJECTS += $(OBJDIR)/chunk.o
+OBJECTS += $(OBJDIR)/debug.o
+OBJECTS += $(OBJDIR)/debug_layer.o
+OBJECTS += $(OBJDIR)/debug_render.o
 OBJECTS += $(OBJDIR)/file_reader.o
 OBJECTS += $(OBJDIR)/fps_counter.o
 OBJECTS += $(OBJDIR)/game_layer.o
@@ -107,6 +114,7 @@ OBJECTS += $(OBJDIR)/input.o
 OBJECTS += $(OBJDIR)/layer_stack.o
 OBJECTS += $(OBJDIR)/log.o
 OBJECTS += $(OBJDIR)/main.o
+OBJECTS += $(OBJDIR)/quad.o
 OBJECTS += $(OBJDIR)/renderer.o
 OBJECTS += $(OBJDIR)/shader.o
 OBJECTS += $(OBJDIR)/texture.o
@@ -191,6 +199,9 @@ $(OBJDIR)/camera_controller.o: src/core/camera/camera_controller.cpp
 $(OBJDIR)/input.o: src/core/input.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/debug_layer.o: src/core/layers/debug_layer.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/game_layer.o: src/core/layers/game_layer.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
@@ -203,6 +214,9 @@ $(OBJDIR)/log.o: src/core/log.cpp
 $(OBJDIR)/buffer.o: src/core/render/buffer.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/quad.o: src/core/render/quad.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/renderer.o: src/core/render/renderer.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
@@ -213,6 +227,12 @@ $(OBJDIR)/texture.o: src/core/render/texture.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/vertex_array.o: src/core/render/vertex_array.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/debug.o: src/core/utils/debug/debug.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/debug_render.o: src/core/utils/debug/debug_render.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/file_reader.o: src/core/utils/file_reader.cpp

@@ -1,8 +1,8 @@
 #include "core/layers/game_layer.h"
 
 #include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
 
+#include "core/log.h"
 #include "core/render/vertex_array.h"
 #include "core/render/buffer.h"
 #include "core/render/shader.h"
@@ -20,11 +20,13 @@ namespace Minecraft
 
         m_world = std::make_shared<World>();
 
-        m_camera_controller = std::make_shared<CameraController>(glm::vec3(0, 0, 20));
+        m_camera_controller = std::make_shared<CameraController>(glm::vec3(0, 250, 20));
         m_world_renderer = std::make_shared<WorldRenderer>();
     }
 
-    void GameLayer::on_event(Event& event) {}
+    void GameLayer::on_event(Event& event)
+    {
+    }
 
     void GameLayer::update(float dt)
     {

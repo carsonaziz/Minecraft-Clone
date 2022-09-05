@@ -2,9 +2,7 @@
 
 #include "layer.h"
 
-#include "core/log.h"
 #include "core/camera/camera_controller.h"
-#include "core/events/mouse_event.h"
 #include "core/render/texture.h"
 #include "world_generation/world.h"
 #include "world_generation/world_renderer.h"

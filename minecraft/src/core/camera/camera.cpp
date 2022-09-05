@@ -2,6 +2,8 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
+#include "core/application.h"
+
 namespace Minecraft
 {
     Camera::Camera(float fov, int width, int height, glm::vec3 position) : m_fov(fov), m_width(width), m_height(height)
@@ -12,7 +14,11 @@ namespace Minecraft
 
     Camera::Camera(glm::vec3 position)
     {
-        m_projection = glm::perspective(45.0f, (float)1280/(float)720, 0.1f, 1000.0f);
+        // int width = Application::get()->get_window()->get_width();
+        // int height = Application::get()->get_window()->get_height();
+        int width = 1280;
+        int height = 720;
+        m_projection = glm::perspective(45.0f, (float)width/(float)height, 0.1f, 1000.0f);
         m_view = glm::lookAt(position, position + glm::vec3(0, 0, -1), glm::vec3(0, 1, 0));
     }
 

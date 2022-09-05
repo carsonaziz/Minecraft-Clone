@@ -3,6 +3,7 @@
 #include "core/log.h"
 #include "core/layers/pause_menu_layer.h"
 #include "core/layers/game_layer.h"
+#include "core/layers/debug_layer.h"
 #include "core/render/renderer.h"
 #include "core/utils/fps_counter.h"
 
@@ -18,6 +19,7 @@ namespace Minecraft
         m_window->set_event_callback(std::bind(&Application::on_event, this, std::placeholders::_1));
 
         m_layer_stack->push(new PauseMenuLayer());
+        m_layer_stack->push(new DebugLayer());
         m_layer_stack->push(new GameLayer());
 
         Render::init();
@@ -64,10 +66,9 @@ namespace Minecraft
             dt = current_time - previous_time;
             previous_time = current_time;
 
-            // title string
-            std::string title = "FPS ";
-            title.append(std::to_string(fps_counter.tick()));
-            m_window->set_title(title);
+            int frames = fps_counter.tick();
+            Render::get_stats().frames = frames;
+            Render::get_stats().ms_for_frame = 1.0f/(float)frames * 1000;
 
             for (auto it = m_layer_stack->begin(); it != m_layer_stack->end(); it++)
             {

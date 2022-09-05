@@ -14,7 +14,12 @@ C++ Minecraft Clone
 - [x] Begin chunk generation
 - [x] Add textures
 - [x] Create world
+- [x] Add debug stats (triangles, fps, ms/frame, memory usage, 3d gizmo cursor, etc...)
 - [ ] Remove seams between chunks
+- [ ] Fix camera aspect ratio variables
+- [ ] Compress vertex data
+- [ ] Add x64 support for Mac
+- [ ] Add suport for Windows and Linux
 
 ## Resources
 - [stb](https://github.com/nothings/stb) by Sean Barrett

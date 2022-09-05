@@ -10,7 +10,7 @@
 
 #include "core/log.h"
 #include "core/utils/yaml_util.h"
-#include "world_generation/format.h"
+#include "core/utils/texture_format.h"
 
 
 namespace Minecraft
@@ -157,6 +157,46 @@ namespace Minecraft
             {
                 MC_LOG_ERROR("Error in loading image");
                 exit(1);
+            }
+
+            return data;
+        }
+
+        unsigned char* load_image_from_int64(uint64_t source)
+        {
+            uint64_t mask = 0x1;                                    // mask 1st bit to start
+
+            unsigned char* data = new unsigned char[8 * 8 * 4];     // store texture data
+
+            int i = 0;  // index into data array
+
+            // loads texture data into data array and flips texture vertically
+            for (int y = 0; y < 8; y++)
+            {
+                for (int x = 7; x >= 0; x--)
+                {
+                    i = y * 8 + x;
+
+                    if ((mask & source) > 0) 
+                    {
+
+                        // if pixel is part of character set to white
+                        data[i * 4 + 0] = 255;
+                        data[i * 4 + 1] = 255;
+                        data[i * 4 + 2] = 255;
+                        data[i * 4 + 3] = 255;
+                    }
+                    else
+                    {
+                        // if pixel is NOT part of character set to transparent
+                        data[i * 4 + 0] = 0;
+                        data[i * 4 + 1] = 0;
+                        data[i * 4 + 2] = 0;
+                        data[i * 4 + 3] = 100;
+                    }
+
+                    mask = mask << 1;
+                }
             }
 
             return data;

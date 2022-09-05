@@ -32,11 +32,13 @@ project "minecraft"
     {
         "%{prj.name}/include/**.h",
         "%{prj.name}/src/**.cpp",
+        "%{prj.name}/res/fonts/**.h",
     }
 
     sysincludedirs
     {
         "%{prj.name}/include",
+        "%{prj.name}/res",
         "%{dependencies.spdlog}/include",
         "%{dependencies.stb}",
         "%{dependencies.yamlcpp}/include",

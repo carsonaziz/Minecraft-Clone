@@ -16,6 +16,7 @@ namespace Minecraft
         std::shared_ptr<Window> m_window;
         std::unique_ptr<LayerStack> m_layer_stack;
 
+
         bool m_running;
 
     private:

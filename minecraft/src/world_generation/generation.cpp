@@ -25,6 +25,8 @@ namespace Minecraft
                     for (uint8_t x = 0; x < Chunk::SIZEX; x++)
                     {
                         if (y == Chunk::SIZEY - 1)
+                            chunk->set_block(x, y, z, 0);
+                        else if (y == Chunk::SIZEY - 2)
                             chunk->set_block(x, y, z, 2);
                         else if (y == 0)
                             chunk->set_block(x, y, z, 3);
@@ -84,13 +86,6 @@ namespace Minecraft
 
                             // uvs
                             TextureFormat face_uvs = texture_map[block_format.front];
-
-                            // uvs[uv_index++] = glm::tvec2<float>(0, 0);
-                            // uvs[uv_index++] = glm::tvec2<float>(1, 1);
-                            // uvs[uv_index++] = glm::tvec2<float>(0, 1);
-                            // uvs[uv_index++] = glm::tvec2<float>(0, 0);
-                            // uvs[uv_index++] = glm::tvec2<float>(1, 0);
-                            // uvs[uv_index++] = glm::tvec2<float>(1, 1);
 
                             uvs[uv_index++] = face_uvs.uv0;
                             uvs[uv_index++] = face_uvs.uv2;
