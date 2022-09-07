@@ -21,6 +21,9 @@ namespace Minecraft
         virtual void render() override {}
         virtual void update(float dt) override {}
 
+        virtual void on_attach() override {}
+        virtual void on_detach() override {}
+
         bool test(Event& event)
         {
             // MC_LOG_WARN(event.to_string());

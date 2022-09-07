@@ -1,12 +1,16 @@
 #include "core/layers/game_layer.h"
 
 #include <glm/glm.hpp>
+// TEMP replace with custom keycodes
+#include <glfw/glfw3.h>
 
 #include "core/log.h"
 #include "core/render/vertex_array.h"
 #include "core/render/buffer.h"
 #include "core/render/shader.h"
 #include "world_generation/chunk.h"
+#include "core/application.h"
+#include "core/input.h"
 
 namespace Minecraft
 {
@@ -24,8 +28,23 @@ namespace Minecraft
         m_world_renderer = std::make_shared<WorldRenderer>();
     }
 
+    void GameLayer::on_attach()
+    {
+    }
+
     void GameLayer::on_event(Event& event)
     {
+        EventHandler handler(event);
+        handler.handle_event<MouseButtonPressedEvent>(std::bind(&GameLayer::mouse_button_pressed, this, std::placeholders::_1));
+    }
+
+    bool GameLayer::mouse_button_pressed(MouseButtonEvent& event)
+    {
+        if (event.get_mouse_button() == GLFW_MOUSE_BUTTON_1)
+        {
+            Input::toggle_cursor();
+        }
+        return true;
     }
 
     void GameLayer::update(float dt)

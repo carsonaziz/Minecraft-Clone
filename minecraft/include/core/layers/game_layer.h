@@ -6,6 +6,7 @@
 #include "core/render/texture.h"
 #include "world_generation/world.h"
 #include "world_generation/world_renderer.h"
+#include "core/events/mouse_event.h"
 
 namespace Minecraft
 {
@@ -21,8 +22,12 @@ namespace Minecraft
     public:
         GameLayer();
 
+        virtual void on_attach() override;
+        virtual void on_detach() override {}
         virtual void on_event(Event& event) override;
         virtual void update(float dt) override;
         virtual void render() override;
+
+        bool mouse_button_pressed(MouseButtonEvent& event);
     };
 }

@@ -14,6 +14,8 @@ namespace Minecraft
         DebugLayer();
         ~DebugLayer();
 
+        virtual void on_attach() override {}
+        virtual void on_detach() override {}
         virtual void on_event(Event& event) override;
         virtual void update(float dt) override;
         virtual void render() override;

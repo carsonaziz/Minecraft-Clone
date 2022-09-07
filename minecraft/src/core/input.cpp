@@ -4,6 +4,7 @@
 #include <glfw/glfw3.h>
 
 #include "core/application.h"
+#include "core/log.h"
 
 namespace Minecraft
 {
@@ -45,5 +46,30 @@ namespace Minecraft
         glfwGetCursorPos(window, &xpos, &ypos);
 
         return (float)ypos;
+    }
+
+    const glm::vec2 Input::get_mouse_pos()
+    {
+        GLFWwindow* window = Application::get()->get_window()->get_window_handle();
+
+        double xpos, ypos;
+        glfwGetCursorPos(window, &xpos, &ypos);
+
+        return glm::vec2(xpos, ypos);
+    }
+
+    void Input::toggle_cursor()
+    {
+        int value = glfwGetInputMode(Application::get()->get_window()->get_window_handle(), GLFW_CURSOR);
+
+        switch (value)
+        {
+        case GLFW_CURSOR_NORMAL:
+            glfwSetInputMode(Application::get()->get_window()->get_window_handle(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+            break;
+        case GLFW_CURSOR_DISABLED:
+            glfwSetInputMode(Application::get()->get_window()->get_window_handle(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+            break;
+        }
     }
 }

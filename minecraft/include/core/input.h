@@ -1,5 +1,7 @@
 #pragma once
 
+#include <glm/glm.hpp>
+
 namespace Minecraft
 {
     namespace Input
@@ -9,5 +11,7 @@ namespace Minecraft
         
         float get_mouse_x();
         float get_mouse_y();
+        void toggle_cursor();
+        const glm::vec2 get_mouse_pos();
     };
 }

@@ -13,6 +13,7 @@ namespace Minecraft
     void LayerStack::push(Layer* layer)
     {
         m_layers.insert(m_layers.begin(), layer);
+        layer->on_attach();
     }
 
     void LayerStack::pop()
