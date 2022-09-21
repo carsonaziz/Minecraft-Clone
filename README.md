@@ -15,7 +15,7 @@ C++ Minecraft Clone
 - [x] Add textures
 - [x] Create world
 - [x] Add debug stats (triangles, fps, ms/frame, memory usage, 3d gizmo cursor, etc...)
-- [ ] Remove seams between chunks
+- [x] Remove seams between chunks
 - [ ] Fix slow debug rendering
 - [ ] Fix camera and debug aspect ratio variables
 - [ ] Compress vertex data
