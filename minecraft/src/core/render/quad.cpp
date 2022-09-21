@@ -6,13 +6,13 @@ namespace Minecraft
 {
     glm::tvec3<float> vertices[6]
     {
-        glm::tvec3<float>(0.0f, 0.0f, 0.0f),
-        glm::tvec3<float>(1.0f, 1.0f, 0.0f),
-        glm::tvec3<float>(0.0f, 1.0f, 0.0f),
+        glm::tvec3<float>(0.0f, 0.0f, -1.0f),
+        glm::tvec3<float>(1.0f, 1.0f, -1.0f),
+        glm::tvec3<float>(0.0f, 1.0f, -1.0f),
 
-        glm::tvec3<float>(0.0f, 0.0f, 0.0f),
-        glm::tvec3<float>(1.0f, 0.0f, 0.0f),
-        glm::tvec3<float>(1.0f, 1.0f, 0.0f)
+        glm::tvec3<float>(0.0f, 0.0f, -1.0f),
+        glm::tvec3<float>(1.0f, 0.0f, -1.0f),
+        glm::tvec3<float>(1.0f, 1.0f, -1.0f)
     };
 
     glm::tvec2<float> uvs[6]
@@ -25,7 +25,7 @@ namespace Minecraft
         glm::tvec2<float>(1, 1)
     };
 
-    Quad::Quad()
+    Quad::Quad() : Shape()
     {
         m_vao = std::make_shared<VertexArray>(6);
         m_vao->bind();

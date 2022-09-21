@@ -22,3 +22,35 @@ stone:
   right: "stone" 
   front: "stone" 
   back: "stone" 
+smoker:
+  id: 4
+  top: "smoker_top" 
+  bottom: "smoker_bottom" 
+  left: "smoker_side" 
+  right: "smoker_side" 
+  front: "smoker_front_on" 
+  back: "smoker_side"
+tnt:
+  id: 5
+  top: "tnt_top" 
+  bottom: "tnt_bottom" 
+  left: "tnt_side" 
+  right: "tnt_side" 
+  front: "tnt_side" 
+  back: "tnt_side"
+enchantment_table:
+  id: 6
+  top: "enchanting_table_top" 
+  bottom: "enchanting_table_bottom" 
+  left: "enchanting_table_side" 
+  right: "enchanting_table_side" 
+  front: "enchanting_table_side" 
+  back: "enchanting_table_side"
+bookshelf:
+  id: 7
+  top: "oak_planks" 
+  bottom: "oak_planks" 
+  left: "bookshelf" 
+  right: "bookshelf" 
+  front: "bookshelf" 
+  back: "bookshelf"

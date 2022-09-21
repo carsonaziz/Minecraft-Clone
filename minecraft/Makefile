@@ -84,8 +84,11 @@ GENERATED += $(OBJDIR)/file_reader.o
 GENERATED += $(OBJDIR)/fps_counter.o
 GENERATED += $(OBJDIR)/game_layer.o
 GENERATED += $(OBJDIR)/generation.o
+GENERATED += $(OBJDIR)/gizmo.o
+GENERATED += $(OBJDIR)/gizmo_renderer.o
 GENERATED += $(OBJDIR)/input.o
 GENERATED += $(OBJDIR)/layer_stack.o
+GENERATED += $(OBJDIR)/line.o
 GENERATED += $(OBJDIR)/log.o
 GENERATED += $(OBJDIR)/main.o
 GENERATED += $(OBJDIR)/quad.o
@@ -110,8 +113,11 @@ OBJECTS += $(OBJDIR)/file_reader.o
 OBJECTS += $(OBJDIR)/fps_counter.o
 OBJECTS += $(OBJDIR)/game_layer.o
 OBJECTS += $(OBJDIR)/generation.o
+OBJECTS += $(OBJDIR)/gizmo.o
+OBJECTS += $(OBJDIR)/gizmo_renderer.o
 OBJECTS += $(OBJDIR)/input.o
 OBJECTS += $(OBJDIR)/layer_stack.o
+OBJECTS += $(OBJDIR)/line.o
 OBJECTS += $(OBJDIR)/log.o
 OBJECTS += $(OBJDIR)/main.o
 OBJECTS += $(OBJDIR)/quad.o
@@ -214,6 +220,9 @@ $(OBJDIR)/log.o: src/core/log.cpp
 $(OBJDIR)/buffer.o: src/core/render/buffer.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/line.o: src/core/render/line.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/quad.o: src/core/render/quad.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
@@ -233,6 +242,12 @@ $(OBJDIR)/debug.o: src/core/utils/debug/debug.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/debug_render.o: src/core/utils/debug/debug_render.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/gizmo.o: src/core/utils/debug/gizmo.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+$(OBJDIR)/gizmo_renderer.o: src/core/utils/debug/gizmo_renderer.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/file_reader.o: src/core/utils/file_reader.cpp

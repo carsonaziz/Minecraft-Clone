@@ -7,6 +7,8 @@
 
 namespace Minecraft
 {
+    #define RM_TRIANGLES GL_TRIANGLES
+    #define RM_LINES GL_LINES
     namespace Render
     {
         struct RenderStats
@@ -17,8 +19,13 @@ namespace Minecraft
             std::string vendor;
             std::string renderer;
             std::string gl_version;
+            glm::vec3 forward_direction;
+            glm::vec3 position;
 
-            RenderStats() : triangle_count(0), frames(0), ms_for_frame(0), vendor((char*)glGetString(GL_VENDOR)), renderer((char*)glGetString(GL_RENDERER)), gl_version((char*)glGetString(GL_VERSION)) {}
+            RenderStats() : 
+                triangle_count(0), frames(0), ms_for_frame(0), 
+                vendor((char*)glGetString(GL_VENDOR)), renderer((char*)glGetString(GL_RENDERER)), 
+                gl_version((char*)glGetString(GL_VERSION)), forward_direction(glm::vec3(0, 0, 0)) {}
         };
 
         struct RenderInfo
@@ -33,6 +40,6 @@ namespace Minecraft
         RenderStats& get_stats();
         void toggle_render_mode();
         void clear();
-        void render(std::shared_ptr<VertexArray> vao);
+        void render(std::shared_ptr<VertexArray> vao, int mode);
     };
 }

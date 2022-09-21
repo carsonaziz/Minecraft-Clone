@@ -20,6 +20,6 @@ namespace Minecraft
         // Will get much more complicated, will likely be multiple functions
         void generate_blocks(Chunk* chunk);
 
-        void generate_mesh(Chunk* chunk);
+        void generate_mesh(Chunk* chunk, World& world);
     }
 }

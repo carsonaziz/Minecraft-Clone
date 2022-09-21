@@ -57,6 +57,9 @@ namespace Minecraft
 
         void render_debug_item(Debug::DebugItem& item)
         {
+            // Source of sloweness could be that each vao is being rendered individually, try something similar to how chunk mesh was created
+            // will need to combine font textures into one large texture atlas
+
             // size variables
             int window_width = Application::get()->get_window()->get_width();
             int window_height = Application::get()->get_window()->get_height();
@@ -69,7 +72,7 @@ namespace Minecraft
 
             rd->shader->use();
 
-            // draw charactera
+            // draw characters
             glm::mat4 transform(1.0f);
             transform = glm::translate(transform, glm::vec3(screen_item_x, screen_item_y, 0.0f));
 
@@ -84,7 +87,7 @@ namespace Minecraft
                 rd->shader->load_mat4(transform, "transform");
 
 
-                Render::render(rd->quad.get_vao());
+                Render::render(rd->quad.get_vao(), RM_TRIANGLES);
 
                 transform = glm::mat4(1.0f);
                 transform = glm::translate(transform, glm::vec3(screen_item_x, screen_item_y, 0.0f));
@@ -95,7 +98,7 @@ namespace Minecraft
         {
             for (auto it = list->begin(); it != list->end(); it++)
             {
-                Debug::DebugItem item = *it;
+                Debug::DebugItem& item = *it;
                 render_debug_item(item);
             }
         }

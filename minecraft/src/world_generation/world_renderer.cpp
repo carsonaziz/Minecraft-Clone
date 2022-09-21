@@ -22,13 +22,14 @@ namespace Minecraft
 
         glm::mat4 model = glm::mat4(1.0f);
 
-        for (Chunk* chunk : world->get_chunks())
+        for (auto& chunk_data : world->get_chunks())
         {
-            model = glm::translate(model, chunk->get_position());
+            Chunk* chunk = chunk_data.second;
+            model = glm::translate(model, glm::vec3(chunk->get_position().x, 0, chunk->get_position().y));
             m_shader->load_mat4(model, "model");
             model = glm::mat4(1.0f);
 
-            Render::render(chunk->get_mesh()->get_vao());
+            Render::render(chunk->get_mesh()->get_vao(), RM_TRIANGLES);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Minecraft
     namespace Render
     {
         // forward declare internal functions
-        void draw_arrays(int vertex_count);
+        void draw_arrays(int vertex_count, int mode);
 
         RenderInfo* info = nullptr;
 
@@ -51,19 +51,19 @@ namespace Minecraft
             info->stats.triangle_count = 0;
         }
 
-        void render(std::shared_ptr<VertexArray> vao)
+        void render(std::shared_ptr<VertexArray> vao, int mode)
         {
             vao->bind();
-            draw_arrays(vao->get_vertex_count());
+            draw_arrays(vao->get_vertex_count(), mode);
 
             // number of triangles rendered
             info->stats.triangle_count += vao->get_vertex_count() / 3;
         }
 
-        void draw_arrays(int vertex_count)
+        void draw_arrays(int vertex_count, int mode)
         {
             glPolygonMode(GL_FRONT_AND_BACK, info->render_mode);
-            glDrawArrays(GL_TRIANGLES, 0, vertex_count);
+            glDrawArrays(mode, 0, vertex_count);
         }
     }
 }

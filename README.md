@@ -16,7 +16,8 @@ C++ Minecraft Clone
 - [x] Create world
 - [x] Add debug stats (triangles, fps, ms/frame, memory usage, 3d gizmo cursor, etc...)
 - [ ] Remove seams between chunks
-- [ ] Fix camera aspect ratio variables
+- [ ] Fix slow debug rendering
+- [ ] Fix camera and debug aspect ratio variables
 - [ ] Compress vertex data
 - [ ] Add x64 support for Mac
 - [ ] Add suport for Windows and Linux

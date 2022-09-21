@@ -1,20 +1,13 @@
 #pragma once
 
-#include <memory>
-
-#include "vertex_array.h"
+#include "shape.h"
 
 namespace Minecraft
 {
-    class Quad
+    class Quad : public Shape
     {
-    private:
-        std::shared_ptr<VertexArray> m_vao;
-
     public:
         Quad();
         ~Quad();
-
-        inline std::shared_ptr<VertexArray>& get_vao() { return m_vao; }
     };
 }

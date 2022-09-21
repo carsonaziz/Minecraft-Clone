@@ -2,14 +2,16 @@
 
 #include "layer.h"
 
-#include "core/log.h"
+#include "core/utils/debug/gizmo.h"
+#include "core/utils/debug/gizmo_renderer.h"
 
 namespace Minecraft
 {
     class DebugLayer : public Layer
     {
     private:
-
+        Gizmo m_gizmo;
+        GizmoRenderer m_gizmo_renderer;
     public:
         DebugLayer();
         ~DebugLayer();

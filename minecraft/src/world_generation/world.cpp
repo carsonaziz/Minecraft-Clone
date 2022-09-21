@@ -3,6 +3,7 @@
 #include <glm/glm.hpp>
 
 #include "world_generation/generation.h"
+#include "world_generation/chunk.h"
 
 namespace Minecraft
 {
@@ -15,10 +16,14 @@ namespace Minecraft
         {
             for (int x = 0; x < m_render_distance; x++)
             {
-                Chunk* chunk = new Chunk(glm::vec3(x * 16, 0, z * 16));
+                glm::vec2 position(x * Chunk::SIZEX, z * Chunk::SIZEZ);
+
+                Chunk* chunk = new Chunk(position);
                 Generation::generate_blocks(chunk);
-                Generation::generate_mesh(chunk);
+                Generation::generate_mesh(chunk, *this);
+
                 m_chunks.push_back(chunk);
+                m_chunk_positions[position] = chunk;
             }
         }
     }
@@ -37,7 +42,8 @@ namespace Minecraft
         {
             if (chunk->get_changed())
             {
-                Generation::generate_mesh(chunk);
+                const glm::vec2& position = chunk->get_position();
+                Generation::generate_mesh(chunk, *this);
                 chunk->set_changed(false);
             }
         }

@@ -4,10 +4,12 @@
 #include <glm/gtx/quaternion.hpp>
 
 // TEMP (used for keycode, mouse button codes, will make custom key and mouse codes)
+#define GLFW_INCLUDE_NONE
 #include <glfw/glfw3.h>
 
 #include "core/input.h"
 #include "core/log.h"
+#include "core/render/renderer.h"
 
 namespace Minecraft
 {
@@ -95,5 +97,8 @@ namespace Minecraft
 
             moved = true;
         }
+
+        Render::get_stats().forward_direction = m_forward_direction;
+        Render::get_stats().position = m_position;
     }
 }
