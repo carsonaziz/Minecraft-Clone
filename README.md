@@ -22,6 +22,8 @@ C++ Minecraft Clone
 - [ ] Add x64 support for Mac
 - [ ] Add suport for Windows and Linux
 
+<img width="1392" alt="Screenshot 2023-04-20 at 7 07 50 PM" src="https://user-images.githubusercontent.com/52608991/233505275-c9a50653-c81c-40cd-ac1b-bf0f1b6c0430.png">
+
 ## Resources
 - [stb](https://github.com/nothings/stb) by Sean Barrett
 - [spdlog](https://github.com/gabime/spdlog) by Gabi Melman
